@@ -5,8 +5,12 @@ object KaratsubaMultiplication {
     @JvmStatic
     fun main(args: Array<String>) {
         println("Enter two numbers to calculate the product: ")
-        var x = scanner.next()
-        var y = scanner.next()
+        /*var x = scanner.next()
+        var y = scanner.next()*/
+        var x = "31415926"
+        var y = "53589793"
+        /*var x = "3141592653589793"
+        var y = "2384626433832795"*/
         print(karatMult(x, y))
     }
 
@@ -19,7 +23,8 @@ object KaratsubaMultiplication {
         if (x.length == 1 && y.length == 1) {
             return Math.multiplyExact(x.toInt(), y.toInt()).toString()
         } else {
-            return (multByTens((Math.pow(10.0, x.length.toDouble()).toInt().toString()),
+            return (multByTens(
+                        (Math.pow(10.0, x.length.toDouble()).toInt().toString()),
                     karatMult(a, c)).toLong()
                     +
                     multByTens(
@@ -33,12 +38,21 @@ object KaratsubaMultiplication {
 
     fun multByTens(tens: String, n: String): String {
         var result = n
-        for (i in tens) {
-            when(i){
-                '.' -> return result
-                '0' -> result += i
+        var e = tens.indexOf("E")
+        /*if(e != -1){
+            var i = tens.substring(e + 1).toInt()
+            while (i > 0){
+                result += "0"
+                i--
             }
-        }
+        } else {*/
+            for (i in tens) {
+                when (i) {
+                    '.' -> return result
+                    '0' -> result += i
+                }
+            }
+        //}
         return result
     }
 }
