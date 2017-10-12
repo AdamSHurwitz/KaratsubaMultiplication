@@ -11,9 +11,9 @@ object KaratsubaMultiplication {
     }
 
     private fun karatMult(x: String, y: String): String {
-        var a = x.substring(0, length(x.length / 2))
+        var a = x.substring(0, Math.ceil(x.length / 2.0).toInt())
         var b = x.substring(x.length / 2)
-        var c = y.substring(0, length(y.length / 2))
+        var c = y.substring(0, Math.ceil(y.length / 2.0).toInt())
         var d = y.substring(y.length / 2)
 
         if (x.length == 1 && y.length == 1) {
@@ -23,19 +23,11 @@ object KaratsubaMultiplication {
                     karatMult(a, c)).toLong()
                     +
                     multByTens(
-                            (Math.pow(10.0, (length((x.length / 2))).toDouble()).toString()),
+                            (Math.pow(10.0, x.length / 2.0).toString()),
                             (karatMult(a, d).toLong() + karatMult(b, c).toLong()).toString())
                             .toLong()
                     + karatMult(b, d).toLong())
                     .toString()
-        }
-    }
-
-    fun length(n: Int): Int {
-        if (n == 0) {
-            return 1
-        } else {
-            return n
         }
     }
 
