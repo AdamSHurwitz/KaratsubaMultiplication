@@ -5,16 +5,48 @@ object KaratsubaMultiplication {
     @JvmStatic
     fun main(args: Array<String>) {
         println("Enter two numbers to calculate the product: ")
-        karatMult(scanner.next(), scanner.next())
+        var x = scanner.next()
+        var y = scanner.next()
+        print(karatMult(x, y))
     }
 
-    private fun karatMult(nOne: String, nTwo: String): Long {
-        var a = nOne.substring(0, nOne.length/2)
-        var b = nOne.substring(nOne.length/2, nOne.length)
-        var c = nTwo.substring(0, nTwo.length/2)
-        var d = nTwo.substring(nTwo.length/2, nTwo.length)
-        println(a + " " + b)
-        println(c + " " + d)
-        return 0
+    private fun karatMult(x: String, y: String): String {
+        var a = x.substring(0, length(x.length / 2))
+        var b = x.substring(x.length / 2)
+        var c = y.substring(0, length(y.length / 2))
+        var d = y.substring(y.length / 2)
+
+        if (x.length == 1 && y.length == 1) {
+            return Math.multiplyExact(x.toInt(), y.toInt()).toString()
+        } else {
+            return (multByTens((Math.pow(10.0, x.length.toDouble()).toInt().toString()),
+                    karatMult(a, c)).toLong()
+                    +
+                    multByTens(
+                            (Math.pow(10.0, (length((x.length / 2))).toDouble()).toString()),
+                            (karatMult(a, d).toLong() + karatMult(b, c).toLong()).toString())
+                            .toLong()
+                    + karatMult(b, d).toLong())
+                    .toString()
+        }
+    }
+
+    fun length(n: Int): Int {
+        if (n == 0) {
+            return 1
+        } else {
+            return n
+        }
+    }
+
+    fun multByTens(tens: String, n: String): String {
+        var result = n
+        for (i in tens) {
+            when(i){
+                '.' -> return result
+                '0' -> result += i
+            }
+        }
+        return result
     }
 }
