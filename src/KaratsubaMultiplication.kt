@@ -1,28 +1,11 @@
 import java.util.*
 
 object KaratsubaMultiplication {
-    private var scanner = Scanner(System.`in`)
     @JvmStatic
     fun main(args: Array<String>) {
-        println("Enter two numbers to calculate the product: ")
-        /*var x = scanner.next()
-        var y = scanner.next()*/
-        //todo: 4 bit = 7,006,652 | 6,912
-        /*var x = "1234"
-        var y = "5678"*/
-        //todo: 8 bit = 1.683573e+15
-        /*var x = "31415926"
-        var y = "53589793"*/
-        //todo: 16 bit = 7.491524886E30
-        /*var x = "3141592653589793"
-        var y = "2384626433832795"*/
-        //todo: 32 bit = 9.060972639E61
-        /*var x = "31415926535897932384626433832795"
-        var y = "02884197169399375105820974944592"*/
-        //todo: 64 bit = 8.539734223E126
+        //solution = 8539734222673567065463550869546574495034888535765114961879601127067743044893204848617875072216249073013374895871952806582723184
         var x = "3141592653589793238462643383279502884197169399375105820974944592"
         var y = "2718281828459045235360287471352662497757247093699959574966967627"
-        println(add("99999999999", "99999999"))
         println(karatMult(x, y))
     }
 
