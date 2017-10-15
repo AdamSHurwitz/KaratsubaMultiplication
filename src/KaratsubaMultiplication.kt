@@ -58,36 +58,43 @@ object KaratsubaMultiplication {
             j--
         }
 
-        while (i > 0){
-            var n1 = n1.substring(i - 1, i).toInt()
-            var sum = carryOver + n1
-            if (sum >= 10) {
-                result = (sum - 10).toString() + result
-                carryOver = 1
-            } else {
-                result = sum.toString() + result
-                carryOver = 0
-            }
-            i--
-        }
-        while (j > 0){
-            var n2 = n2.substring(j - 1, j).toInt()
-            var sum = carryOver + n2
-            if (sum >= 10) {
-                result = (sum - 10).toString() + result
-                carryOver = 1
-            } else {
-                result = sum.toString() + result
-                carryOver = 0
-            }
-            j--
-        }
+        val n1Longer = oneNumLonger(i, n1, carryOver, result)
+        carryOver = n1Longer.first
+        result = n1Longer.second
 
-        if (carryOver > 0){
+        val n2Longer = oneNumLonger(j, n2, carryOver, result)
+        carryOver = n2Longer.first
+        result = n2Longer.second
+
+        return carryOverAtEnd(carryOver, result)
+
+    }
+
+    private fun oneNumLonger(i: Int, n1: String, carryOver: Int, result: String): Pair<Int, String> {
+        var i1 = i
+        var carryOver1 = carryOver
+        var result1 = result
+        while (i1 > 0) {
+            var n1 = n1.substring(i1 - 1, i1).toInt()
+            var sum = carryOver1 + n1
+            if (sum >= 10) {
+                result1 = (sum - 10).toString() + result1
+                carryOver1 = 1
+            } else {
+                result1 = sum.toString() + result1
+                carryOver1 = 0
+            }
+            i1--
+        }
+        return Pair(carryOver1, result1)
+    }
+
+    private fun carryOverAtEnd(carryOver: Int, result: String): String {
+        if (carryOver > 0) {
             return carryOver.toString() + result
         } else {
             return result
         }
-
     }
+
 }
